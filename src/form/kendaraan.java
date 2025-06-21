@@ -15,7 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID; // Untuk nama file gambar yang unik
+import java.util.UUID;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -51,14 +51,15 @@ public class kendaraan extends javax.swing.JFrame {
         model.addColumn("Gambar");
         table_kendaraan.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         int modelColumnIndex = 3; // Indeks kolom Model
-        int modelPreferredWidth = 200; 
-        int modelMinimumWidth = 100;   
+        int modelPreferredWidth = 200;
+        int modelMinimumWidth = 100;
         int modelMaximumWidth = 300;
-         table_kendaraan.getColumnModel().getColumn(modelColumnIndex).setPreferredWidth(modelPreferredWidth);
+        table_kendaraan.getColumnModel().getColumn(modelColumnIndex).setPreferredWidth(modelPreferredWidth);
         table_kendaraan.getColumnModel().getColumn(modelColumnIndex).setMinWidth(modelMinimumWidth);
         table_kendaraan.getColumnModel().getColumn(modelColumnIndex).setMaxWidth(modelMaximumWidth);
         loadData();
         autogenerateIdKendaraan();
+        txtIdKendaraan.setEditable(false);
         clearForm();
     }
 
@@ -182,43 +183,42 @@ public class kendaraan extends javax.swing.JFrame {
             label_tampil_gambar.setIcon(null); // Tidak ada gambar
         }
     }
-    
+
     private void searchData(String keyword) {
-    model.getDataVector().removeAllElements();
-    model.fireTableDataChanged();
-    Connection conn = null;
-    try {
-        koneksi db = new koneksi();
-        conn = db.connect();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        Connection conn = null;
+        try {
+            koneksi db = new koneksi();
+            conn = db.connect();
 
-        if (conn == null) {
-            return;
-        }
+            if (conn == null) {
+                return;
+            }
 
-        String sql = "SELECT id_kendaraan, jenis, merk, model, tahun, plat_nomor, harga_sewa, status, gambar FROM kendaraan WHERE "
-                     + "id_kendaraan LIKE ? OR "
-                     + "jenis LIKE ? OR "
-                     + "merk LIKE ? OR "
-                     + "model LIKE ? OR "
-                     + "tahun LIKE ? OR "
-                     + "plat_nomor LIKE ? OR "
-                     + "harga_sewa LIKE ? OR "
-                     + "status LIKE ?";
+            String sql = "SELECT id_kendaraan, jenis, merk, model, tahun, plat_nomor, harga_sewa, status, gambar FROM kendaraan WHERE "
+                    + "id_kendaraan LIKE ? OR "
+                    + "jenis LIKE ? OR "
+                    + "merk LIKE ? OR "
+                    + "model LIKE ? OR "
+                    + "tahun LIKE ? OR "
+                    + "plat_nomor LIKE ? OR "
+                    + "harga_sewa LIKE ? OR "
+                    + "status LIKE ?";
 
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, "%" + keyword + "%");
-        pst.setString(2, "%" + keyword + "%");
-        pst.setString(3, "%" + keyword + "%");
-        pst.setString(4, "%" + keyword + "%"); 
-        pst.setString(5, "%" + keyword + "%");
-        pst.setString(6, "%" + keyword + "%");
-        pst.setString(7, "%" + keyword + "%");
-        pst.setString(8, "%" + keyword + "%");
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, "%" + keyword + "%");
+            pst.setString(2, "%" + keyword + "%");
+            pst.setString(3, "%" + keyword + "%");
+            pst.setString(4, "%" + keyword + "%");
+            pst.setString(5, "%" + keyword + "%");
+            pst.setString(6, "%" + keyword + "%");
+            pst.setString(7, "%" + keyword + "%");
+            pst.setString(8, "%" + keyword + "%");
 
-
-        ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
-            Object[] o = new Object[9];
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Object[] o = new Object[9];
                 o[0] = rs.getString("id_kendaraan");
                 o[1] = rs.getString("jenis");
                 o[2] = rs.getString("merk");
@@ -229,20 +229,20 @@ public class kendaraan extends javax.swing.JFrame {
                 o[7] = rs.getString("status");
                 o[8] = rs.getString("gambar");
                 model.addRow(o);
-        }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error mencari data kendaraan: " + e.getMessage(), "Error Database", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
-    } finally {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error mencari data kendaraan: " + e.getMessage(), "Error Database", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -782,6 +782,11 @@ public class kendaraan extends javax.swing.JFrame {
             statusKendaraan = "Disewa";
         } else {
             JOptionPane.showMessageDialog(this, "Silakan pilih status kendaraan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (statusKendaraan.equals("Disewa")) {
+            JOptionPane.showMessageDialog(this, "Status kendaraan baru tidak boleh 'Disewa'. Silakan pilih 'Tersedia'.", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

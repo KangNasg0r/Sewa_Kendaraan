@@ -49,6 +49,8 @@ public class pelanggan extends javax.swing.JFrame {
         model.addColumn("Foto KTP");
         loadData();
         autogenerateIdPelanggan();
+        txtId.setEditable(false);
+        txtNama.requestFocus();
         clearForm();
     }
 
@@ -552,6 +554,7 @@ public class pelanggan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Data pelanggan berhasil ditambahkan!");
                 loadData();
                 clearForm();
+                txtNama.requestFocus();
             } else {
                 JOptionPane.showMessageDialog(this, "Gagal menambahkan data pelanggan.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -614,6 +617,7 @@ public class pelanggan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Data pelanggan berhasil diubah!");
                 loadData();
                 clearForm();
+                txtNama.requestFocus();
             } else {
                 JOptionPane.showMessageDialog(this, "Gagal mengubah data. ID Pelanggan tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -667,6 +671,7 @@ public class pelanggan extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Data berhasil dihapus!");
                     loadData();
                     clearForm();
+                    txtNama.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(this, "Gagal menghapus data. ID Pelanggan tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -711,16 +716,14 @@ public class pelanggan extends javax.swing.JFrame {
             txtAlamat.setText(model.getValueAt(selectedRow, 2).toString());
             txtTelepon.setText(model.getValueAt(selectedRow, 3).toString());
 
-            // --- Tampilkan Foto KTP dari database ---
-            if (model.getValueAt(selectedRow, 4) != null) { // Indeks 4 adalah kolom 'Foto KTP'
+            if (model.getValueAt(selectedRow, 4) != null) {
                 namaFileGambar = model.getValueAt(selectedRow, 4).toString();
                 tampilGambar(namaFileGambar);
             } else {
-                label_tampil_gambar.setIcon(null); // Kosongkan jika tidak ada gambar
+                label_tampil_gambar.setIcon(null);
                 namaFileGambar = null;
             }
-            pathGambarTerpilih = null; // Reset path terpilih
-            // --- AKHIR Tampilkan Foto KTP ---
+            pathGambarTerpilih = null;
         }
     }//GEN-LAST:event_table_pelangganMouseClicked
 
@@ -748,7 +751,6 @@ public class pelanggan extends javax.swing.JFrame {
 
             // Tampilkan gambar di JLabel
             ImageIcon icon = new ImageIcon(pathGambarTerpilih);
-            // Sesuaikan ukuran gambar agar pas di JLabel (opsional, tapi disarankan)
             int lebar = label_tampil_gambar.getWidth();
             int tinggi = label_tampil_gambar.getHeight();
 
@@ -756,7 +758,7 @@ public class pelanggan extends javax.swing.JFrame {
                 java.awt.Image img = icon.getImage().getScaledInstance(lebar, tinggi, java.awt.Image.SCALE_SMOOTH);
                 label_tampil_gambar.setIcon(new ImageIcon(img));
             } else {
-                label_tampil_gambar.setIcon(icon); // Jika JLabel belum di-render sempurna
+                label_tampil_gambar.setIcon(icon);
             }
 
             // Ambil nama file untuk disimpan di database, pastikan unik
@@ -766,7 +768,6 @@ public class pelanggan extends javax.swing.JFrame {
             if (i > 0) {
                 extension = originalFileName.substring(i);
             }
-            // Gunakan UUID untuk membuat nama file unik
             namaFileGambar = UUID.randomUUID().toString() + extension;
         }
     }//GEN-LAST:event_bUploadActionPerformed
