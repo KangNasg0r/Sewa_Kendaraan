@@ -58,6 +58,7 @@ public class registrasi extends javax.swing.JFrame {
         jLabel3.setText("Password :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(16, 55, 92));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("REGISTRASI");
 
@@ -100,11 +101,10 @@ public class registrasi extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(txtId)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel5)
-                        .addComponent(txtNama)
-                        .addComponent(txtNo))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(txtNama)
+                    .addComponent(txtNo)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bKonfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)
