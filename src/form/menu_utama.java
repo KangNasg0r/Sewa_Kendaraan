@@ -244,6 +244,7 @@ private Connection conn = new koneksi().connect();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -618,6 +619,15 @@ private Connection conn = new koneksi().connect();
         });
         jMenu3.add(jMenuItem6);
 
+        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem9.setText("Data Kendaraan");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem9);
+
         jMenuItem7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem7.setText("Data Transaksi");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -799,6 +809,33 @@ private Connection conn = new koneksi().connect();
         this.dispose();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        try {
+            String loginId = UserID.getIdKasir();
+            String kasir = "Tidak Diketahui";
+
+            try (PreparedStatement kasir_nama = conn.prepareStatement("SELECT nama FROM kasir WHERE id_kasir = ?")) {
+                kasir_nama.setString(1, loginId);
+                try (ResultSet rsNama = kasir_nama.executeQuery()) {
+                    if (rsNama.next()) {
+                        kasir = rsNama.getString("nama");
+                    }
+                }
+            }
+
+            String reportPath = "./src/report/report_kendaraan.jasper";
+            HashMap parameter = new HashMap();
+            parameter.put("kasir", kasir);
+
+            JasperPrint print = JasperFillManager.fillReport(reportPath,parameter,conn);
+            JasperViewer.viewReport(print,false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -854,6 +891,7 @@ private Connection conn = new koneksi().connect();
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

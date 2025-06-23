@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14031acf-b65e-4a3e-913b-dedb79506376">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="kasir" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     kendaraan.`id_kendaraan` AS kendaraan_id_kendaraan,
+     kendaraan.`jenis` AS kendaraan_jenis,
+     kendaraan.`merk` AS kendaraan_merk,
+     kendaraan.`model` AS kendaraan_model,
+     kendaraan.`tahun` AS kendaraan_tahun,
+     kendaraan.`plat_nomor` AS kendaraan_plat_nomor,
+     kendaraan.`harga_sewa` AS kendaraan_harga_sewa,
+     kendaraan.`status` AS kendaraan_status
+FROM
+     `kendaraan` kendaraan]]>
+	</queryString>
+	<field name="kendaraan_id_kendaraan" class="java.lang.String"/>
+	<field name="kendaraan_jenis" class="java.lang.String"/>
+	<field name="kendaraan_merk" class="java.lang.String"/>
+	<field name="kendaraan_model" class="java.lang.String"/>
+	<field name="kendaraan_tahun" class="java.lang.Integer"/>
+	<field name="kendaraan_plat_nomor" class="java.lang.String"/>
+	<field name="kendaraan_harga_sewa" class="java.lang.Integer"/>
+	<field name="kendaraan_status" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="652" height="74" forecolor="#10375C" uuid="b8cd884f-26a8-4738-b054-bf11b72261cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="44" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Kendaraan YaRental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="73" width="652" height="77" forecolor="#10375C" uuid="e16191af-6176-4a86-a323-51a5f6861789"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jl. Raya Tengah No.80, RT.6/RW.1, Gedong, Kec. Ps. Rebo, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13760, Indonesia]]></text>
+			</staticText>
+			<image>
+				<reportElement x="652" y="0" width="150" height="150" uuid="971d42ab-ed2e-4720-b470-ec06169b95a3"/>
+				<imageExpression><![CDATA["../gambar/YaRental_logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="67" height="20" uuid="1adcc23a-11ef-4be9-b250-054589079b2e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="9" width="62" height="20" uuid="0e9dbf26-22bd-416e-b8fa-cfa7cb80c687"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="9" width="123" height="20" uuid="1e26f1d6-32aa-4b7c-8377-e91b9fb6d9ca"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Merk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="9" width="180" height="20" uuid="770ac0dd-dfc9-4b33-8286-b02e92e4d99d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Model]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="9" width="70" height="20" uuid="aeef10fc-6a4e-46d9-ab78-fd289809fb1a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="502" y="9" width="85" height="20" uuid="b4127f94-7c22-444f-ad87-cf51260bb418"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plat Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="587" y="9" width="126" height="20" uuid="2b71d09c-f26f-410f-bde8-4412ca4e1a29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga Sewa / Hari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="713" y="9" width="89" height="20" uuid="2485a21b-6da8-475d-9cf7-768b8793b2fb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status Sewa]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="3" width="802" height="1" uuid="6df9daed-685a-48f7-b40e-46972663de4e"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="33" width="802" height="1" uuid="6049420a-6066-41ca-a1c7-dbf673609418"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="56" height="20" uuid="d5b0c77a-9351-4310-976d-0fb2028371bf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_id_kendaraan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="48" height="20" uuid="6f94b11d-9e89-4b79-8d04-88e99db3d524"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_jenis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="0" width="113" height="20" uuid="3f53c87f-e19d-400d-a2a9-5e1ad9ec2f67"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_merk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="0" width="166" height="20" uuid="1c80aa71-f00b-40ce-bed7-89d879fbdf7b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_model}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="59" height="20" uuid="a5163a4f-34d3-4090-bb4a-be39a98ac342"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_tahun}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="0" width="73" height="20" uuid="ef6eca6c-b86f-4e27-b8ed-7d47b808be66"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_plat_nomor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp  #,##0.00">
+				<reportElement x="587" y="0" width="113" height="20" uuid="a5af4380-1929-4ce6-adc9-5e0bd35a23ec"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_harga_sewa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="713" y="0" width="89" height="20" uuid="d9422d43-1d5b-4c40-8ecc-cc4c4ab8b826"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kendaraan_status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="680" y="9" width="80" height="20" uuid="c33b7239-18f9-4a17-9b7a-292494508faf"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="760" y="9" width="40" height="20" uuid="91c428cf-175e-42ee-8e5e-b4cb02c6d815"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="4" width="802" height="1" uuid="527a7035-6008-4e98-aaac-a4058835259c"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="161" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="4" width="802" height="1" uuid="fe514ba7-f694-4754-9202-9b13e269ef78"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="637" y="14" width="43" height="20" uuid="43ddc95d-6349-4902-a6c3-96ef0bf14729"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="637" y="34" width="83" height="20" uuid="23a1c748-8ed0-42cb-b7af-eec66e9eee2b"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dicetak Oleh:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="637" y="119" width="163" height="20" uuid="fe5bc624-d72c-4f04-b840-04915791c1ac"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kasir YaRental]]></text>
+			</staticText>
+			<line>
+				<reportElement x="637" y="118" width="164" height="1" uuid="8db66748-fcfb-427a-9f50-d37f8ba430f3"/>
+			</line>
+			<textField>
+				<reportElement x="637" y="99" width="163" height="20" uuid="292e38a5-3825-438f-8e82-e46f39b00fa7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kasir}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="680" y="14" width="120" height="20" uuid="437e453b-b0a7-4ea5-81d4-7aa086241c4c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

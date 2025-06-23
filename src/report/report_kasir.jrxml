@@ -145,7 +145,7 @@ FROM
 	<summary>
 		<band height="164" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="456" y="12" width="100" height="20" uuid="976d485f-6a85-45ec-b7d3-3843fc8fcc52"/>
+				<reportElement x="421" y="12" width="135" height="20" uuid="976d485f-6a85-45ec-b7d3-3843fc8fcc52"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -158,8 +158,8 @@ FROM
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="378" y="12" width="78" height="20" uuid="3db1f1e6-5add-4339-af97-ce3cbaa97a2b"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="378" y="12" width="43" height="20" uuid="3db1f1e6-5add-4339-af97-ce3cbaa97a2b"/>
+				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Jakarta, ]]></text>
