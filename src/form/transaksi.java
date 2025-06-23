@@ -587,7 +587,7 @@ private Connection conn = new koneksi().connect();
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(16, 55, 92));
-        jLabel20.setText("Tanggal Sewa :");
+        jLabel20.setText("Tanggal Mulai Sewa :");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(16, 55, 92));

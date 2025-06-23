@@ -699,7 +699,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="5c" green="37" red="10" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tanggal Sewa :"/>
+                <Property name="text" type="java.lang.String" value="Tanggal Mulai Sewa :"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel21">
