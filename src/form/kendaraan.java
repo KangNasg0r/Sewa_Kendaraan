@@ -633,86 +633,78 @@ public class kendaraan extends javax.swing.JFrame {
 
     private void bUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUbahActionPerformed
         if (txtIdKendaraan.getText().isEmpty() || txtMerk.getText().isEmpty() || txtModel.getText().isEmpty()
-                || txtKendaraan.getText().isEmpty() || txtPlat.getText().isEmpty() || txtSewa.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Semua field harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            || txtKendaraan.getText().isEmpty() || txtPlat.getText().isEmpty() || txtSewa.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Semua field harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    if (combo_jenis.getSelectedIndex() == 0) {
+        JOptionPane.showMessageDialog(this, "Silakan pilih jenis kendaraan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    if (radio_tersedia.isSelected() || radio_tersedia1.isSelected()) {
+        JOptionPane.showMessageDialog(this, "Status hanya bisa diubah melalui transaksi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    Connection conn = null;
+    try {
+        if (pathGambarTerpilih != null && namaFileGambar != null) {
+            Path sourcePath = Paths.get(pathGambarTerpilih);
+            Path targetDir = Paths.get("src/vehicles");
+            Files.createDirectories(targetDir);
+            Path targetPath = targetDir.resolve(namaFileGambar);
+
+            Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        koneksi db = new koneksi();
+        conn = db.connect();
+
+        if (conn == null) {
             return;
         }
 
-        if (combo_jenis.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Silakan pilih jenis kendaraan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+        String sql = "UPDATE kendaraan SET jenis=?, merk=?, model=?, tahun=?, plat_nomor=?, harga_sewa=?, gambar=? WHERE id_kendaraan=?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, combo_jenis.getSelectedItem().toString());
+        pst.setString(2, txtMerk.getText());
+        pst.setString(3, txtModel.getText());
+        pst.setInt(4, Integer.parseInt(txtKendaraan.getText()));
+        pst.setString(5, txtPlat.getText());
+        pst.setDouble(6, Double.parseDouble(txtSewa.getText()));
+        pst.setString(7, namaFileGambar);
+        pst.setString(8, txtIdKendaraan.getText());
 
-        String statusKendaraan = "";
-        if (radio_tersedia.isSelected()) {
-            statusKendaraan = "Tersedia";
-        } else if (radio_tersedia1.isSelected()) { // Asumsi radio_tersedia1 adalah "Disewa"
-            statusKendaraan = "Disewa";
+        int affectedRows = pst.executeUpdate();
+        if (affectedRows > 0) {
+            JOptionPane.showMessageDialog(this, "Data berhasil diubah!");
+            loadData();
+            clearForm();
         } else {
-            JOptionPane.showMessageDialog(this, "Silakan pilih status kendaraan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
+            JOptionPane.showMessageDialog(this, "Gagal mengubah data. ID Kendaraan tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        Connection conn = null;
-        try {
-            // Salin gambar jika ada yang baru dipilih
-            if (pathGambarTerpilih != null && namaFileGambar != null) {
-                Path sourcePath = Paths.get(pathGambarTerpilih);
-                Path targetDir = Paths.get("src/vehicles");
-                Files.createDirectories(targetDir);
-                Path targetPath = targetDir.resolve(namaFileGambar);
-
-                Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
-            }
-
-            koneksi db = new koneksi();
-            conn = db.connect();
-
-            if (conn == null) {
-                return;
-            }
-
-            String sql = "UPDATE kendaraan SET jenis=?, merk=?, model=?, tahun=?, plat_nomor=?, harga_sewa=?, status=?, gambar=? WHERE id_kendaraan=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, combo_jenis.getSelectedItem().toString());
-            pst.setString(2, txtMerk.getText());
-            pst.setString(3, txtModel.getText());
-            pst.setInt(4, Integer.parseInt(txtKendaraan.getText())); // txtKendaraan adalah txtTahun
-            pst.setString(5, txtPlat.getText());
-            pst.setDouble(6, Double.parseDouble(txtSewa.getText())); // txtSewa adalah txtHargaSewa
-            pst.setString(7, statusKendaraan);
-            pst.setString(8, namaFileGambar); // Simpan nama file gambar yang baru/lama
-            pst.setString(9, txtIdKendaraan.getText());
-
-            int affectedRows = pst.executeUpdate();
-            if (affectedRows > 0) {
-                JOptionPane.showMessageDialog(this, "Data berhasil diubah!");
-                loadData();
-                clearForm();
-            } else {
-                JOptionPane.showMessageDialog(this, "Gagal mengubah data. ID Kendaraan tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException e) {
-            if (e.getErrorCode() == 1062) { // MySQL error code for duplicate entry
-                JOptionPane.showMessageDialog(this, "Plat Nomor sudah terdaftar!", "Error Duplikasi", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Gagal mengubah data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Input Tahun Kendaraan dan Harga Sewa harus berupa angka!", "Error Input", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error saat operasi file: " + e.getMessage(), "Error File", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+    } catch (SQLException e) {
+        if (e.getErrorCode() == 1062) {
+            JOptionPane.showMessageDialog(this, "Plat Nomor sudah terdaftar!", "Error Duplikasi", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Gagal mengubah data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        e.printStackTrace();
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Input Tahun Kendaraan dan Harga Sewa harus berupa angka!", "Error Input", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error saat operasi file: " + e.getMessage(), "Error File", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    } finally {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
+    }
     }//GEN-LAST:event_bUbahActionPerformed
 
     private void bHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHapusActionPerformed

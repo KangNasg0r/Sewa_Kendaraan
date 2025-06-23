@@ -373,7 +373,6 @@ private Connection conn = new koneksi().connect();
         bCariKendaraan = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         txtIdKendaraan = new javax.swing.JTextField();
-        label_tampil_gambar = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtPlat = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -398,6 +397,8 @@ private Connection conn = new koneksi().connect();
         jLabel25 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        label_tampil_gambar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtIdTransaksi = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -484,7 +485,7 @@ private Connection conn = new koneksi().connect();
                 .addComponent(bHapus)
                 .addGap(18, 18, 18)
                 .addComponent(bBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -552,9 +553,6 @@ private Connection conn = new koneksi().connect();
 
         txtIdKendaraan.setBackground(new java.awt.Color(255, 255, 204));
         txtIdKendaraan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        label_tampil_gambar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_tampil_gambar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(16, 55, 92), 2, true));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(16, 55, 92));
@@ -665,6 +663,26 @@ private Connection conn = new koneksi().connect();
         jLabel26.setForeground(new java.awt.Color(16, 55, 92));
         jLabel26.setText("Rp ");
 
+        jPanel5.setBackground(new java.awt.Color(16, 55, 92));
+
+        label_tampil_gambar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_tampil_gambar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(16, 55, 92), 2, true));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(label_tampil_gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(label_tampil_gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -729,9 +747,9 @@ private Connection conn = new koneksi().connect();
                                             .addComponent(txtTotalBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(0, 0, Short.MAX_VALUE))))
                         .addGap(53, 53, 53)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-                            .addComponent(label_tampil_gambar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39))))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -786,7 +804,7 @@ private Connection conn = new koneksi().connect();
                                     .addComponent(jLabel24))
                                 .addGap(11, 11, 11)
                                 .addComponent(jLabel23))
-                            .addComponent(label_tampil_gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTotalBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -812,7 +830,7 @@ private Connection conn = new koneksi().connect();
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtHargaSewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -1329,6 +1347,7 @@ private Connection conn = new koneksi().connect();
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label_tampil_gambar;
