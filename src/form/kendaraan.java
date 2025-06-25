@@ -642,10 +642,7 @@ public class kendaraan extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Silakan pilih jenis kendaraan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         return;
     }
-    if (radio_tersedia.isSelected() || radio_tersedia1.isSelected()) {
-        JOptionPane.showMessageDialog(this, "Status hanya bisa diubah melalui transaksi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+
 
     Connection conn = null;
     try {

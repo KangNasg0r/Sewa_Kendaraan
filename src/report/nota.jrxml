@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b5851618-dafa-4047-935d-88e019c1a6c2">
 	<property name="ireport.zoom" value="1.464100000000001"/>
-	<property name="ireport.x" value="8"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="33"/>
+	<property name="ireport.y" value="208"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -421,52 +421,52 @@ transaksi.id_transaksi=$P{id_transaksi}]]>
 	<summary>
 		<band height="147" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="429" y="3" width="125" height="20" uuid="93b8d0f5-49a6-4f5d-8712-ea319327c093"/>
+				<reportElement x="403" y="3" width="151" height="20" uuid="93b8d0f5-49a6-4f5d-8712-ea319327c093"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="376" y="3" width="53" height="20" uuid="d0985696-c113-443d-89da-e910067e7c7b"/>
+				<reportElement x="348" y="3" width="55" height="20" uuid="d0985696-c113-443d-89da-e910067e7c7b"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Jakarta, ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="214" y="27" width="145" height="20" uuid="73f7afea-f16c-4713-9a93-948dbc07d40f"/>
+				<reportElement x="214" y="27" width="118" height="20" uuid="73f7afea-f16c-4713-9a93-948dbc07d40f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Pelanggan]]></text>
 			</staticText>
 			<line>
-				<reportElement x="214" y="116" width="145" height="1" uuid="c58d7b19-2c72-40af-afce-ed447c9ba731"/>
+				<reportElement x="214" y="116" width="118" height="1" uuid="c58d7b19-2c72-40af-afce-ed447c9ba731"/>
 			</line>
 			<textField>
-				<reportElement x="214" y="117" width="145" height="20" uuid="a52c4812-d686-4ac0-8917-aa7fd5cfa471"/>
+				<reportElement x="214" y="117" width="118" height="20" uuid="a52c4812-d686-4ac0-8917-aa7fd5cfa471"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pelanggan_nama_pelanggan}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="376" y="28" width="178" height="20" uuid="263837b6-940b-4c2f-b141-4b826f3cc27e"/>
+				<reportElement x="348" y="28" width="206" height="20" uuid="263837b6-940b-4c2f-b141-4b826f3cc27e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Kasir YaRental]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="376" y="117" width="178" height="20" uuid="f217b625-86e7-4a92-9f96-81266f4fdac6"/>
+				<reportElement x="348" y="117" width="206" height="20" uuid="f217b625-86e7-4a92-9f96-81266f4fdac6"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kasir_nama}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="376" y="116" width="178" height="1" uuid="22e5842f-ae7e-4709-8d97-d4de3c5600d6"/>
+				<reportElement x="348" y="116" width="206" height="1" uuid="22e5842f-ae7e-4709-8d97-d4de3c5600d6"/>
 			</line>
 			<line>
 				<reportElement x="0" y="141" width="554" height="1" uuid="ab1f3c7b-1b5a-45ee-830f-bbca19f92c4b"/>
@@ -486,7 +486,7 @@ transaksi.id_transaksi=$P{id_transaksi}]]>
 				<staticText>
 					<reportElement x="0" y="19" width="195" height="110" forecolor="#10375C" uuid="102555ee-2cd7-4f60-9bac-ceb71a3de921"/>
 					<textElement textAlignment="Justified"/>
-					<text><![CDATA[Kendaraan harus dikembalikan tepat waktu, jika melebihi waktu yang ditentukan, maka akan dikenakan denda  Rp 50.000,00 / Hari.]]></text>
+					<text><![CDATA[Kendaraan harus dikembalikan tepat waktu, jika melebihi waktu yang ditentukan, maka akan dikenakan denda  Rp 50.000,00 / Jam.]]></text>
 				</staticText>
 			</frame>
 		</band>

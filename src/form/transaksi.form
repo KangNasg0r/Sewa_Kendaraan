@@ -808,6 +808,9 @@
               </SubComponents>
             </Container>
             <Component class="org.jdesktop.swingx.JXDatePicker" name="tanggal_sewa">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tanggal_sewaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="org.jdesktop.swingx.JXDatePicker" name="tanggal_kembali">
             </Component>

@@ -486,12 +486,13 @@ private Connection conn = new koneksi().connect();
                             .addComponent(label_id_kasir7)
                             .addComponent(label_id_kasir8)
                             .addComponent(label_tanggal))
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(label_id_kasir9)
                             .addComponent(label_id_kasir10)
-                            .addComponent(label_waktu)))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(label_waktu))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

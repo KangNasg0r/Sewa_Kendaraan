@@ -54,6 +54,7 @@ private Connection conn = new koneksi().connect();
         autogenerateIdTransaksi();
         tanggal_transaksi.setDate(new Date());
         tanggal_transaksi.setEditable(false);
+        txtIdTransaksi.setEditable(false);
         txtIdPelanggan.setEditable(false);
         txtNamaPelanggan.setEditable(false);
         txtAlamatPelanggan.setEditable(false);
@@ -63,7 +64,8 @@ private Connection conn = new koneksi().connect();
         txtHargaSewa.setEditable(false);
         txtDurasi.setEditable(false);
         txtTotalBiaya.setEditable(false);
-        loadKasirInfo();
+        txtIdKasir.setEditable(false);
+        loadKasirInfo(UserID.getIdKasir());
         loadDataTransaksi();
         tanggal_sewa.addActionListener(e -> calculateRentalCost());
         tanggal_kembali.addActionListener(e -> calculateRentalCost());
@@ -125,53 +127,54 @@ private Connection conn = new koneksi().connect();
         }
     }
 
-    // Metode untuk memuat informasi kasir yang sedang login
-    private void loadKasirInfo() {
-        String idKasir = UserID.getIdKasir();
+    // Metode untuk memuat informasi kasir yang sedang login dan kasir dari tabel
+    private void loadKasirInfo(String idKasir) {
         txtIdKasir.setText(idKasir);
         txtIdKasir.setEditable(false);
         if (idKasir == null || idKasir.isEmpty()) {
+        txtNamaKasir.setText("N/A");
+        txtNamaKasir.setEditable(false);
+        return;
+    }
+    
+    Connection tempConn = null;
+    try {
+        koneksi db = new koneksi();
+        tempConn = db.connect();
+
+        if (tempConn == null) {
             txtNamaKasir.setText("N/A");
             txtNamaKasir.setEditable(false);
             return;
         }
-        Connection conn = null;
-        try {
-            koneksi db = new koneksi();
-            conn = db.connect();
 
-            if (conn == null) {
-                txtNamaKasir.setText("N/A");
-                txtNamaKasir.setEditable(false);
-                return;
-            }
-            String sql = "SELECT nama FROM kasir WHERE id_kasir = ?";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, idKasir);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                txtNamaKasir.setText(rs.getString("nama"));
-                txtNamaKasir.setEditable(false);
-            } else {
-                txtNamaKasir.setText("Nama Tidak Ditemukan");
-                txtNamaKasir.setEditable(false);
-            }
-            rs.close();
-            pst.close();
+        String sql = "SELECT nama FROM kasir WHERE id_kasir = ?";
+        PreparedStatement pst = tempConn.prepareStatement(sql);
+        pst.setString(1, idKasir);
+        ResultSet rs = pst.executeQuery();
 
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Gagal memuat nama kasir: " + e.getMessage(), "Error Database", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        if (rs.next()) {
+            txtNamaKasir.setText(rs.getString("nama"));
+            txtNamaKasir.setEditable(false);
+        } else {
+            txtNamaKasir.setText("Nama Tidak Ditemukan");
+            txtNamaKasir.setEditable(false);
+        }
+        rs.close();
+        pst.close();
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Gagal memuat nama kasir: " + e.getMessage(), "Error Database", JOptionPane.ERROR_MESSAGE);
+    } finally {
+        if (tempConn != null) {
+            try {
+                tempConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
+}
 
     // Metode untuk memuat data transaksi dari database ke tabel
     private void loadDataTransaksi() {
@@ -236,6 +239,7 @@ private Connection conn = new koneksi().connect();
         tanggal_kembali.setDate(null);
         txtDurasi.setText("0");
         txtTotalBiaya.setText("0");
+        loadKasirInfo(UserID.getIdKasir());
     }
 
     // Metode untuk menampilkan gambar kendaraan di JLabel
@@ -639,6 +643,12 @@ private Connection conn = new koneksi().connect();
             }
         });
         jScrollPane2.setViewportView(table_transaksi);
+
+        tanggal_sewa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tanggal_sewaActionPerformed(evt);
+            }
+        });
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(16, 55, 92));
@@ -1197,7 +1207,9 @@ private Connection conn = new koneksi().connect();
         int selectedRow = table_transaksi.getSelectedRow();
         if (selectedRow > -1) {
             txtIdTransaksi.setText(model.getValueAt(selectedRow, 0).toString());
-            txtIdKasir.setText(model.getValueAt(selectedRow, 1).toString());
+            String idKasirDariTabel = model.getValueAt(selectedRow, 1).toString();
+            txtIdKasir.setText(idKasirDariTabel); // Set ID dari tabel ke txtIdKasir
+            loadKasirInfo(idKasirDariTabel); 
 
             this.selectedIdPelanggan = model.getValueAt(selectedRow, 2).toString();
             txtIdPelanggan.setText(this.selectedIdPelanggan);
@@ -1220,6 +1232,10 @@ private Connection conn = new koneksi().connect();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cetak();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tanggal_sewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_sewaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tanggal_sewaActionPerformed
 
     private void populateDetailsFromDatabase(String idPelanggan, String idKendaraan) {
         Connection conn = null;
